@@ -7,6 +7,7 @@
 		</div>
 	</div>
 </template>
+
 <script>
 	export default{
 		data(){
@@ -47,6 +48,7 @@
 		}
 	}
 </script>
+
 <style lang='stylus' rel='stylesheet/stylus'>
 	.personal
 		//font-size:0

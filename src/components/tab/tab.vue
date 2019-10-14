@@ -1,33 +1,58 @@
 <template>
-	<div class="tab">
-		<router-link to="/all" tag='div'>全部</router-link>
-		<router-link to="/good" tag='div'>精华</router-link>
-		<router-link to="/weex" tag='div'>weex</router-link>
-		<router-link to="/share" tag='div'>分享</router-link>
-		<router-link to="/ask" tag='div'>问答</router-link>
-		<router-link to="/job" tag='div'>招聘</router-link>
-	</div>
+
+  <div class="container-fluid" style="background:#34495e;">
+    <div class="container">
+      <div class="row row-box">
+        <div class="col-md-6 tab1">
+          <img class="tab1-img" src="../../assets/logo.png" alt="">
+        </div>
+        <div class="col-md-6 tab" style="padding:0px;">
+          <router-link to="/all" tag='span'>首页</router-link>
+          <router-link to="/good" tag='span'>技术中心</router-link>
+          <router-link to="/weex" tag='span'>媒体中心</router-link>
+          <router-link to="/share" tag='span'>下载中心</router-link>
+          <router-link to="/ask" tag='span'>关于我们</router-link>
+        </div>
+      </div>
+    </div>
+  </div>
+
 </template>
+
+
+
 <script>
 	export default{
 
 	}
 </script>
+
+
+
 <style lang='stylus' rel='stylesheet/stylus'>
+ .tab1
+   height:80px
+   .tab1-img
+      height:60px
+      display :block
+      line-height 80px
+      padding-top 15px
+      padding-left:20px
 	.tab
-		width:100%
-		height:40px
-		font-size:0
-		background-color:#f6f6f6
-		display:flex
-		div
-			flex:1
-			font-size:16px
-			display:inline-block
-			height:40px
-			line-height:40px
-			text-align:center
+		height:80px
+		font-size:16px
+		span
+      line-height 80px
+      font-weight bold
+      font-size 18px
+      color: #fff
+      margin-right 50px
+
 		.router-link-exact-active
-			color:#fff
-			background-color:#31c27c
+       color #41b883
+       font-size 20px
+       .menu-box
+          position absolute
+          z-index 999
+
 </style>

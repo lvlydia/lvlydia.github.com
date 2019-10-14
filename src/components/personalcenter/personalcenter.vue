@@ -39,70 +39,73 @@
 <script>
 	import showdetail from '../showdetail/showdetail'
 	export default {
-	data () {
-	 return {
-	 	userinfo:{
-	 		recent_topics: [],
-	 		recent_replies:[],
-	 		collect_topics:[]
-	 	},
-	 	uparrow:-1,
-	 	selectList:0
-	 }
-	},
-	components:{
-		showdetail
-	},
-	mounted(){
-		this.getuserinfo();
-	},
-	filters:{
-		formate:function(value){
-			let d=new Date();
-			return value;
-		}
-	},
-	methods:{
-		getuserinfo:function(){
-			let accesstoken=localStorage.getItem('accesstoken');
-			if (!accesstoken) {
-				this.$router.push({path:'/personal'});
-				return false;
-			}
-			let user =localStorage.getItem('loginname');
-		    this.$http({
-		      methods:'get',
-		      url:`https://www.vue-js.com/api/v1/user/${user}`
-		    }).then(function(data){
-		      this.userinfo=data.body.data;
-		      console.log(this.userinfo);
-		    })
-		},
-		changearrow:function(id){
-			if(this.uparrow==id){
-				this.uparrow=-1;
-			}else{
-				this.uparrow=id;
-			}
-		},
-		pushinto:function(id){
-			console.log(id);
-			this.selectList=id;
-			this.$refs.showdetail.show();
-			// this.$router.push({path:'/showdetail',query: {id}});
-		},
-		signOut:function(){
-			localStorage.clear();
-			window.location.reload();
-		}
-	},
-	computed: {
-	 persondata () {
-	 return this.$store.state.persondata
-	 }
-	}
+      data () {
+       return {
+        userinfo:{
+          recent_topics: [],
+          recent_replies:[],
+          collect_topics:[]
+        },
+        uparrow:-1,
+        selectList:0
+       }
+      },
+
+      components:{
+        showdetail
+      },
+
+      mounted(){
+        this.getuserinfo();
+      },
+      filters:{
+        formate:function(value){
+          let d=new Date();
+          return value;
+        }
+      },
+      methods:{
+        getuserinfo:function(){
+          let accesstoken=localStorage.getItem('accesstoken');
+          if (!accesstoken) {
+            this.$router.push({path:'/personal'});
+            return false;
+          }
+          let user =localStorage.getItem('loginname');
+            this.$http({
+              methods:'get',
+              url:`https://www.vue-js.com/api/v1/user/${user}`
+            }).then(function(data){
+              this.userinfo=data.body.data;
+              console.log(this.userinfo);
+            })
+        },
+        changearrow:function(id){
+          if(this.uparrow==id){
+            this.uparrow=-1;
+          }else{
+            this.uparrow=id;
+          }
+        },
+        pushinto:function(id){
+          console.log(id);
+          this.selectList=id;
+          this.$refs.showdetail.show();
+          // this.$router.push({path:'/showdetail',query: {id}});
+        },
+        signOut:function(){
+          localStorage.clear();
+          window.location.reload();
+        }
+      },
+      computed: {
+         persondata () {
+           return this.$store.state.persondata
+         }
+      }
 	}
 </script>
+
 <style lang='stylus' rel='stylesheet/stylus' scoped>
 	body
 		background-color:#f8f8f8

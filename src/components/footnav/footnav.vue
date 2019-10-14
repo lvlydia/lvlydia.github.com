@@ -30,7 +30,7 @@
 	export default{
 		methods:{
 			hidenav:function(){
-				
+
 			}
 		}
 	}
@@ -44,7 +44,7 @@
 		right:0
 		width:100%
 		border-top:1px solid #f0f0f0
-		background-color:#fff
+		background-color:#34495e
 		display:flex
 		div
 			flex:1
@@ -58,4 +58,5 @@
 				font-size:18px
 		.router-link-exact-active
 			color:#31c27c
+
 </style>

@@ -14,6 +14,7 @@
 		</div>
 	</div>
 </template>
+
 <script>
 	export default{
 		data(){
@@ -36,6 +37,7 @@
 		}
 	}
 </script>
+
 <style lang='stylus' rel='stylesheet/stylus'>
 	.message
 		.message_tab

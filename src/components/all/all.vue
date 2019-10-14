@@ -1,41 +1,53 @@
 <template>
 	<div class="page">
-		<tab></tab>
-		<div class="child" v-for='ltem in articleList' ref='child' @click='select(ltem.id)'>
-			<div class="avatar">
-				<img :src="ltem.author.avatar_url">
-			</div>
-			<div class="info">
-				<div class="tag" v-if="ltem.tab=='ask'">
-					问答
-				</div>
-				<div class="tag" v-if="ltem.tab=='share'">
-					分享
-				</div>
-				<div class="tag" v-if="ltem.tab=='weex'">
-					weex
-				</div>
-				<div class="tag" v-if="ltem.tab=='job'">
-					招聘
-				</div>
-				<div class="tag good" v-if="ltem.tab=='good'">
-					精华
-				</div>
-				<!-- <div class="count">{{ltem.reply_count}}/{{ltem.visit_count}}</div> -->
-				<div class="title">{{ltem.title}}</div>
-			</div>
-			<div class="time">{{ltem.last_reply_at | formattime}}</div>
-		</div>
+    <div>
+      <h1>{{$route.name}}</h1>
+      <hr data-am-widget="divider" style="" class="am-divider am-divider-default"/>
+    </div>
+
+    <div class="child" v-for='ltem in articleList' ref='child' @click='select(ltem.id)'>
+      <div class="avatar">
+        <img :src="ltem.author.avatar_url">
+      </div>
+      <div class="info">
+        <div class="tag" v-if="ltem.tab=='ask'">
+          问答
+        </div>
+        <div class="tag" v-if="ltem.tab=='share'">
+          分享
+        </div>
+        <div class="tag" v-if="ltem.tab=='weex'">
+          weex
+        </div>
+        <div class="tag" v-if="ltem.tab=='job'">
+          招聘
+        </div>
+        <div class="tag good" v-if="ltem.tab=='good'">
+          精华
+        </div>
+        <!-- <div class="count">{{ltem.reply_count}}/{{ltem.visit_count}}</div> -->
+        <div class="title">{{ltem.title}}</div>
+      </div>
+      <div class="time">{{ltem.last_reply_at | formattime}}</div>
+    </div>
+
+    <button type="button" class="am-btn addbtn" @click="getMoreData()" style="width: 100%;
+    border-radius: 20px;
+    background-color: #a5a5a5;color:#fff;font-weight: bold;margin-top: 30px;outline: none">加载更多</button>
+
 		<showdetail :showdetail='selectList' ref='showdetail'></showdetail>
-		<footnav rel='footnav'></footnav>	
 	</div>
 </template>
+
 <script>
 	import showdetail from '../showdetail/showdetail'
 	import footnav from '../footnav/footnav'
 	import tab from '../tab/tab'
+	import lunbo from '../lunbo/lunbo'
+
 	let page=2;
 	export default{
+    name: 'app',
 		data(){
 			return{
 				articleList:[],
@@ -45,11 +57,12 @@
 		components:{
 			showdetail,
 			footnav,
-			tab
+			tab,
+      lunbo
 		},
 		mounted(){
 		  this.getData(1,'all');
-		  window.addEventListener('scroll',this.getMoreData);
+		  // window.addEventListener('scroll',this.getMoreData);
 		  // this.$nextTick(()=>{
 		  // 	this.getMoreData();
 		  // })
@@ -97,12 +110,12 @@
 			$route: {
 			    handler: function (val, oldVal) {
 			       let _urlParams = this.$route.params;
-			       //console.log(val);
+			       console.log(val);
 			       let tab=val.fullPath;
 			       tab=tab.substring(1);
 			       this.getData(1,tab);
 			       page=1;
-			        //created事件触发的函数可以在这里写...  
+			        //created事件触发的函数可以在这里写...
 			        //都是componentA组件，声明周期还在，改变不了
 			    },
 			    deep: true
@@ -120,7 +133,7 @@
 		        mdrender:true
 		      }
 		    }).then(function(data){
-		      //console.log(data);
+		      console.log(data);
 		      this.articleList=data.body.data;
 		    })
 		  },
@@ -135,8 +148,10 @@
 		  	let documentHeight=document.body.scrollHeight;//整个文档高度
 		  	console.log(scrollHeight);
 		  	let tab=location.href;
+		  	console.log(tab);
 		  	let index_of=tab.indexOf('#');
 		  	tab=tab.substring(index_of+2);
+		  	console.log(tab);
 		  	if (scrollHeight+screenHeight>=documentHeight) {
 		  		this.$http({
 		  		  methods:'get',
@@ -160,11 +175,12 @@
 		}
 	}
 </script>
+
 <style lang='stylus' rel='stylesheet/stylus'>
 	.page
 		padding:0!important
 		.child
-			padding :0px 15px
+			padding :0px 10px
 			background-color:#fff
 			height:50px
 			display:flex

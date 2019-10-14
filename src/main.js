@@ -8,6 +8,7 @@ import Vuex from 'vuex'
 import store from './vuex/store'
 import './common/stylus/icon.styl'
 
+
 Vue.use(vueResource)
 Vue.use(Vuex)
 Vue.config.productionTip = false

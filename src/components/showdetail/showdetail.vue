@@ -1,37 +1,39 @@
 <template>
 	<div class="showdetail" v-show='showflag'>
 		<div class="head">
-			<img src="./left.png" height="25" @click='hide'>
+			<img src="./left.png" height="25" @click='hide' style="width: 28px;height: 28px;">
 			<span>{{showdetail_content.title}}</span>
 		</div>
-		<div class="content" v-html="showdetail_content.content">
+		<div class="content container" v-html="showdetail_content.content" style="margin-top:40px;">
 			{{showdetail_content.content}}
 		</div>
-		<div class="split"></div>
-		<div class="replies" v-for='(item,index) in showdetail_content.replies'>
-			<div class="top">
-				<span class="avatar">
-					<img :src="item.author.avatar_url" width="36" height="36">
-				</span>
-				<span class="username">{{item.author.loginname}}</span>
-				<span class="floor">{{index+1}}楼</span>
-				<div class="support" @click='givestar(index)'>
-					<span class="icon-点赞" :class='isstar(index)'></span>
-					<span class="support_num">{{item.ups.length}}</span>
-				</div>
-			</div>
-			<div class="bottom" v-html='item.content'>
-				{{item.content}}
-			</div>
-		</div>
+		<div class="split container"></div>
+
+		<!--<div class="replies" v-for='(item,index) in showdetail_content.replies'>-->
+			<!--<div class="top">-->
+				<!--<span class="avatar">-->
+					<!--<img :src="item.author.avatar_url" width="36" height="36">-->
+				<!--</span>-->
+				<!--<span class="username">{{item.author.loginname}}</span>-->
+				<!--<span class="floor">{{index+1}}楼</span>-->
+				<!--<div class="support" @click='givestar(index)'>-->
+					<!--<span class="icon-点赞" :class='isstar(index)'></span>-->
+					<!--<span class="support_num">{{item.ups.length}}</span>-->
+				<!--</div>-->
+			<!--</div>-->
+			<!--<div class="bottom" v-html='item.content'>-->
+				<!--{{item.content}}-->
+			<!--</div>-->
+		<!--</div>-->
 	</div>
 </template>
+
 <script>
 	import Vue from 'vue';
 	export default{
 		props:{
 			showdetail:{
-				
+
 			}
 		},
 		data(){
@@ -97,13 +99,14 @@
 		}
 	}
 </script>
+
 <style lang='stylus' rel='stylesheet/stylus' scoped>
 	.showdetail
 		position:fixed
 		top:0
 		left:0
 		z-index:7
-		background-color:#fff
+		background-color:#f5f5f5
 		width:100%
 		height:100%
 		transform:translate3d(0,0,0)
@@ -112,16 +115,15 @@
 		overflow-x:hidden
 		.head
 			width:100%
-			height:44px
-			line-height:44px
-			background-color:#1c6132
+			height:60px
+			line-height:60px
+			background-color:#34495e
 			img
 				vertical-align:middle
 			span
 				color:#fff
 		.content
-			padding :15px
-			overflow-x:hidden
+			background #fff
 			a
 				text-decoration:none
 				color:black
@@ -129,7 +131,7 @@
 				border-bottom: 1px solid #eee
 				padding-bottom:15px
 		.split
-			height:20px
+			height:1px
 			background-color:#ededed
 			clear:both
 		.replies

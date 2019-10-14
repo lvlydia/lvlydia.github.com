@@ -18,6 +18,8 @@
 		</div>
 	</div>
 </template>
+
+
 <script>
 	import marked  from 'marked'
 	export default{
@@ -59,6 +61,8 @@
 		}
 	}
 </script>
+
+
 <style lang='stylus' rel='stylesheet/stylus'>
 	body
 		background-color:#fff!important
